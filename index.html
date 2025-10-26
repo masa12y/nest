@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nest - FiNANCiE Community Landing</title>
+    <meta
+      name="description"
+      content="Nest — FiNANCiEでつながるコミュニティ。イベント・限定コンテンツ・トークンで応援する新しい形。"
+    />
+    <style>
+      :root {
+        --bg-1: #f3f1ff;
+        --bg-2: #ffffff;
+        --card-bg: rgba(255, 255, 255, 0.72);
+        --card-border: rgba(167, 139, 250, 0.16);
+        --accent: #a78bfa;
+        --muted-text: #6b6b79;
+        --heading: #3f3d56;
+        --glass-weak: rgba(167, 139, 250, 0.06);
+        --shadow: 0 8px 30px rgba(159, 146, 201, 0.12);
+        --radius: 16px;
+        --maxw: 1100px;
+      }
+
+      /* Base */
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        padding: 32px;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          Roboto, Arial;
+        background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 60%);
+        color: var(--muted-text);
+        display: flex;
+        justify-content: center;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .container {
+        width: 100%;
+        max-width: var(--maxw);
+      }
+
+      /* Header & Nav */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+      }
+      .brand {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--accent), #06b6d4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: white;
+      }
+      .brand h1 {
+        margin: 0;
+        font-size: 20px;
+      }
+      nav {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+      }
+      nav a {
+        color: var(--muted-text);
+        text-decoration: none;
+        font-size: 14px;
+      }
+      nav a.cta {
+        background: var(--accent);
+        padding: 10px 14px;
+        border-radius: 12px;
+        color: white;
+        text-decoration: none;
+      }
+
+      /* Hero */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 28px;
+        align-items: center;
+        margin-bottom: 36px;
+      }
+      .hero-right {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      @media (max-width: 920px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .hero-right {
+          order: -1;
+        }
+      }
+
+      /* Card */
+      .card {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 20px;
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        color: var(--muted-text);
+        margin-bottom: 20px;
+      }
+      .card--hero {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(255, 255, 255, 0.85)
+        );
+        color: var(--heading);
+      }
+      .card--clickable:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        transition: all 0.3s ease;
+      }
+
+      /* Headline & Lead */
+      .headline {
+        font-size: 34px;
+        line-height: 1.05;
+        margin: 0 0 12px;
+        color: var(--heading);
+      }
+      .lead {
+        margin: 0 0 20px;
+        color: var(--muted-text);
+      }
+
+      /* Badges & Pills */
+      .badges {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+      .badge,
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: var(--glass-weak);
+        color: var(--heading);
+        font-size: 13px;
+      }
+
+      /* Buttons */
+      .cta-row {
+        display: flex;
+        gap: 12px;
+        margin-top: 16px;
+      }
+      .btn {
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 0;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn.primary {
+        background: linear-gradient(90deg, #cdb9ff 0%, var(--accent) 100%);
+        color: white;
+        box-shadow: 0 6px 18px rgba(167, 139, 250, 0.14);
+      }
+      .btn.ghost {
+        background: transparent;
+        border: 1px solid rgba(63, 61, 86, 0.08);
+        color: var(--heading);
+      }
+
+      /* Stats */
+      .stats {
+        display: flex;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .stat {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(159, 146, 201, 0.06);
+        text-align: center;
+        color: var(--heading);
+      }
+      .stat .n {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .stat .t {
+        font-size: 12px;
+        color: var(--muted-text);
+      }
+
+      /* Features */
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-bottom: 36px;
+      }
+      @media (max-width: 920px) {
+        .features {
+          grid-template-columns: 1fr;
+        }
+      }
+      .feature {
+        padding: 16px;
+        border-radius: 12px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        min-height: 120px;
+        color: var(--heading);
+        margin-bottom: 20px;
+      }
+      .feature h3 {
+        margin: 0 0 8px;
+      }
+      .feature p {
+        margin: 0;
+        color: var(--muted-text);
+        font-size: 14px;
+      }
+
+      /* Token Section */
+      .token-section {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        margin-bottom: 36px;
+      }
+      @media (max-width: 920px) {
+        .token-section {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+      .token-chart {
+        flex: 1;
+        padding: 18px;
+        border-radius: 12px;
+      }
+      .token-actions {
+        width: 320px;
+      }
+
+      /* Events */
+      .events {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 36px;
+      }
+      .event {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .event .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      /* FAQ */
+      .faq {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 36px;
+      }
+      @media (max-width: 920px) {
+        .faq {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 28px;
+        color: var(--muted-text);
+        font-size: 13px;
+        text-align: center;
+      }
+
+      /* Form Inputs */
+      .form-row {
+        display: flex;
+        gap: 8px;
+      }
+      .input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        background: transparent;
+        color: inherit;
+      }
+
+      /* Misc */
+      .ghost-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .pulse {
+        animation: pulse 2.2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.03);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Team / Activity Cards */
+      .team-card,
+      .activity-card {
+        background: rgba(225, 210, 255, 0.12);
+        border-radius: 16px;
+        padding: 16px;
+        flex: 1 1 200px;
+        text-align: center;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        margin-bottom: 20px;
+      }
+      .team-card:hover,
+      .activity-card:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        transition: 0.3s;
+      }
+      .team {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+
+      /* Responsive Small Screens */
+      @media (max-width: 600px) {
+        .card {
+          padding: 16px;
+        }
+        .headline {
+          font-size: 28px;
+        }
+        .team {
+          flex-direction: column;
+          gap: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand">
+          <div class="logo">
+            <img
+              src="./nest-icon.jpeg"
+              alt="Nest Logo"
+              style="
+                width: 95%;
+                height: 95%;
+                border-radius: 12px;
+                object-fit: cover;
+              "
+            />
+          </div>
+
+          <div>
+            <h1>Nest — FiNANCiE Community</h1>
+            <div style="font-size: 12px; color: var(--muted)">
+              カードタイプUIの暗号通貨トラッキングアプリ"ネスト"を創る
+            </div>
+          </div>
+        </div>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#member">Member</a>
+          <a href="#activity">Activity</a>
+          <a href="#faq">FAQ</a>
+          <a class="cta" href="https://t.co/gTPIAKlKJd" target="_blank">Join</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="card">
+          <div class="badges">
+            <div class="badge">FiNANCiE</div>
+            <div class="badge">Road to 1000</div>
+            <div class="badge">Community</div>
+          </div>
+          <h2 class="headline">
+            Nestに参加して、コミュニティと共に未来を創ろう
+          </h2>
+          <p class="lead">
+            FiNANCiEでトークン発行に向けて挑戦中です。コミュニティに参加して挑戦を応援してください。
+          </p>
+          <div class="cta-row">
+            <a
+              href="https://t.co/gTPIAKlKJd"
+              style="text-decoration: none"
+              target="_blank"
+            >
+              <button class="btn primary">今すぐ参加する</button>
+            </a>
+          </div>
+        </section>
+
+        <section
+          id="about"
+          class="card"
+          style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center"
+        >
+          <div style="flex: 1 1 300px">
+            <h3>Nestとは</h3>
+            <p>
+              Nestはコミュニティと共に完成を目指す最初のアプリです。<br />
+              <br />
+              暗号通貨やトークンの資産管理において「いつどんな銘柄を」「どれだけ買って」「それが今どうなってるのか」がひと目でわかるようにします。
+              Nestは自身が保有する暗号資産を購入単位でリアルタイムに状況をチェックできる未来の資産管理サポートアプリになることを目指します。
+            </p>
+          </div>
+          <div style="flex: 1 1 300px">
+            <img
+              src="./nest-service.jpeg"
+              alt="Nestサービスイメージ"
+              style="width: 100%; border-radius: 24px; display: block"
+            />
+          </div>
+        </section>
+
+        <section class="card">
+          <h3>コミュニティの役割</h3>
+          <p>
+            未来のアプリ"Nest"は、一人で完成させることができません。<br />
+            アプリ公開までのプロセスをコミュニティにシェアしながら、皆さんにも様々な形でご協力をお願いしていきたいと思っています。<br />
+            コミュニティ参加者それぞれの持つ強みを活かして、より良いサービスや盛り上がるコミュニティを作っていくことを目指しています。
+          </p>
+          <p>
+            共に創って、共に世界に発信していく—そんな新しい挑戦を一緒に始めましょう。
+          </p>
+        </section>
+
+        <section class="card">
+          <h3>Nest × 音楽フェス</h3>
+          <p>
+            Nestコミュニティは音楽ライブフェスとも連携し、会場にはFiNANCiEコミュニティのブースを設置予定です。<br />
+            Nestだけでなく様々なコミュニティが魅力を発信できる場所を提供します。<br />
+            <br />
+            他コミュニティとの繋がりを強め、コミュニティを盛り上げることができるような場を提供できるように準備を進めています。
+          </p>
+        </section>
+
+        <section id="member" class="card">
+          <h3>運営</h3>
+          <div
+            class="team"
+            style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px"
+          >
+            <div class="team-card">
+              <div
+                style="
+                  width: 80px;
+                  height: 80px;
+                  background: #333;
+                  border-radius: 50%;
+                  margin: 0 auto 8px;
+                "
+              >
+                <img
+                  src="./x-icon-1.jpeg"
+                  alt="X Icon 1"
+                  style="
+                    width: 95%;
+                    height: 95%;
+                    border-radius: 12px;
+                    object-fit: cover;
+                  "
+                />
+              </div>
+              <a
+                href="https://x.com/cat_man0311"
+                target="_blank"
+                style="color: var(--accent); text-decoration: none"
+                >ギリー/コミュニティNest founder
+              </a>
+              <p
+                style="
+                  margin-top: 12px;
+                  font-size: 14px;
+                  line-height: 1.6;
+                  color: var(--muted);
+                  padding: 0 8px;
+                "
+              >
+                Advance Ability 株式会社 CEO<br />
+                FiNANCiEコミュニティ Nest founder<br />
+              </p>
+            </div>
+
+            <div class="team-card">
+              <div
+                style="
+                  width: 80px;
+                  height: 80px;
+                  background: #333;
+                  border-radius: 50%;
+                  margin: 0 auto 8px;
+                "
+              >
+                <img
+                  src="./x-icon-2.jpeg"
+                  alt="X Icon 2"
+                  style="
+                    width: 95%;
+                    height: 95%;
+                    border-radius: 12px;
+                    object-fit: cover;
+                  "
+                />
+              </div>
+              <a
+                href="https://x.com/cotorisann"
+                target="_blank"
+                style="color: var(--accent); text-decoration: none"
+                >里紗-risa-🎹Inst piano artist
+              </a>
+              <p
+                style="
+                  margin-top: 12px;
+                  font-size: 14px;
+                  line-height: 1.6;
+                  color: var(--muted);
+                  padding: 0 8px;
+                "
+              >
+                Advance Ability 株式会社 Officialアーティスト<br />
+                Inst piano artist<br />
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="activity" class="card">
+          <h4>活動</h4>
+          <div
+            class="activities"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+              margin-top: 12px;
+            "
+          >
+            <div class="activity-card">
+              <div
+                style="font-weight: 600; margin-bottom: 4px; font-size: 20px"
+              >
+                Xスペース「わちゃわちゃネストーク」
+              </div>
+              <div
+                style="
+                  font-size: 12px;
+                  color: var(--muted);
+                  margin-bottom: 8px;
+                  padding-bottom: 15px;
+                "
+              >
+                毎日開催中
+              </div>
+              <p
+                style="font-size: 16px; margin: 0 0 8px 0; padding-bottom: 15px"
+              >
+                毎日Xでスペースを開催しています。<br />
+                コミュニティの状況やFiNANCiEのニュースなど様々な情報を発信しています。<br />
+                参加者とのコミュニケーションもたくさん取りながらわちゃわちゃ楽しいスペースです。
+              </p>
+              <img
+                src="./x-space.jpeg"
+                alt="スペース画像"
+                style="
+                  width: 100%;
+                  display: block;
+                  margin: 8px auto 0 auto;
+                  border-radius: 8px;
+                "
+              />
+            </div>
+
+            <div class="activity-card">
+              <div
+                style="
+                  font-weight: 600;
+                  margin-bottom: 4px;
+                  font-size: 20px;
+                  padding-bottom: 20px;
+                "
+              >
+                主催音楽フェス
+              </div>
+              <div style="font-size: 16px; margin-bottom: 8px">
+                MIYAKO RESORT MUSIC FES Shangri-La 2025（2025年5月開催）
+              </div>
+              <a
+                href="https://shangrila-fes.com/"
+                target="_blank"
+                style="
+                  color: var(--accent);
+                  text-decoration: none;
+                  padding-bottom: 15px;
+                "
+                >2025年5月開催時の公式ページはこちら</a
+              >
+              <img
+                src="./fes.jpeg"
+                alt="イベント画像"
+                style="
+                  width: 100%;
+                  display: block;
+                  margin: 8px auto 0 auto;
+                  border-radius: 8px;
+                "
+              />
+            </div>
+          </div>
+        </section>
+
+        <section id="faq" class="card">
+          <h3 style="margin-top: 0">FAQ</h3>
+          <div class="faq">
+            <div>
+              <strong>参加に費用はかかりますか？</strong>
+              <p style="color: var(--muted)">
+                FiNANCiEへの登録やNestコミュニティへの参加は無料です。<br />
+                FiNANCiE上のトークン購入時には入金が必要になります。<br />
+                詳しくはFiNANCiEのページを確認してください。
+              </p>
+            </div>
+            <div>
+              <strong>どのようにイベントに参加できますか？</strong>
+              <p style="color: var(--muted)">
+                フェスなどのリアルイベントの告知はXやFiNANCiE内で行っていく予定です。
+                イベントによって参加方法などは異なってくるため、各告知等をご確認ください。
+              </p>
+            </div>
+            <div>
+              <strong>トークンはどこで買えますか？</strong>
+              <p style="color: var(--muted)">
+                FiNANCiE内のマーケットで購入が可能です。<br />
+                ただし、Nestはトークン発行前のため、Nestトークンは購入することはできません。
+              </p>
+            </div>
+            <div>
+              <strong>コラボ提案はできますか？</strong>
+              <p style="color: var(--muted)">
+                可能です。XのDM等でご連絡お願いします。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <footer class="card" style="padding: 16px">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 12px;
+            "
+          >
+            <div style="font-size: 13px; color: var(--muted)">
+              © Nest Community — Built for FiNANCiE
+            </div>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

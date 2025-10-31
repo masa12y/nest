@@ -8,465 +8,7 @@
       name="description"
       content="Nest — FiNANCiEでつながるコミュニティ。イベント・限定コンテンツ・トークンで応援する新しい形。"
     />
-    <style>
-      :root {
-        --bg-1: #f3f1ff;
-        --bg-2: #ffffff;
-        --card-bg: rgba(255, 255, 255, 0.72);
-        --card-border: rgba(167, 139, 250, 0.16);
-        --accent: #a78bfa;
-        --muted-text: #6b6b79;
-        --heading: #3f3d56;
-        --glass-weak: rgba(167, 139, 250, 0.06);
-        --shadow: 0 8px 30px rgba(159, 146, 201, 0.12);
-        --radius: 16px;
-        --maxw: 1100px;
-      }
-
-      /* Base */
-      * {
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        height: 100%;
-      }
-      body {
-        margin: 0;
-        padding: 32px;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-          Roboto, Arial;
-        background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 60%);
-        color: var(--muted-text);
-        display: flex;
-        justify-content: center;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-      .container {
-        width: 100%;
-        max-width: var(--maxw);
-      }
-
-      /* Header & Nav */
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 28px;
-        flex-wrap: wrap;
-        position: relative;
-      }
-      .brand {
-        display: flex;
-        gap: 14px;
-        align-items: center;
-      }
-      .logo {
-        width: 56px;
-        height: 56px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, var(--accent), #06b6d4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        color: white;
-      }
-      .brand h1 {
-        margin: 0;
-        font-size: 20px;
-      }
-      nav {
-        display: flex;
-        gap: 18px;
-        align-items: center;
-      }
-      nav a {
-        color: var(--muted-text);
-        text-decoration: none;
-        font-size: 14px;
-      }
-      nav a.cta {
-        background: var(--accent);
-        padding: 10px 14px;
-        border-radius: 12px;
-        color: white;
-        text-decoration: none;
-      }
-      .nav-toggle {
-        display: none;
-        font-size: 28px;
-        cursor: pointer;
-        width: 28px;
-        height: 28px;
-        flex-direction: column;
-        justify-content: space-between;
-        order: 2;
-      }
-      .nav-toggle span {
-        display: block;
-        height: 3px;
-        background: var(--accent);
-        border-radius: 2px;
-      }
-      .nav-overlay {
-        position: fixed;
-        top: 80px;
-        width: 200px;
-        right: -220px;
-        background: rgba(15, 23, 36, 0.95);
-        backdrop-filter: blur(6px);
-        display: flex;
-        flex-direction: column;
-        padding: 32px;
-        gap: 24px;
-        transition: left 0.3s ease, opacity 0.3s ease;
-        opacity: 0;
-        color: #fff;
-        z-index: 999;
-      }
-      .nav-overlay.show {
-        right: 16px;
-        opacity: 1;
-      }
-      .nav-overlay a {
-        color: #fff;
-        text-decoration: none;
-        font-weight: 600;
-      }
-      @media (max-width: 720px) {
-        .nav-toggle {
-          display: flex;
-          position: absolute;
-          right: 16px;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-
-        nav {
-          display: none;
-          flex-direction: column;
-          width: 100%;
-          gap: 12px;
-          margin-top: 60px;
-        }
-
-        nav.show {
-          display: flex;
-        }
-
-        nav a.cta {
-          width: 100%;
-          text-align: center;
-        }
-
-        header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .brand {
-          flex-direction: row;
-          align-items: center;
-        }
-      }
-
-      /* Hero */
-      .hero {
-        display: grid;
-        grid-template-columns: 1fr 420px;
-        gap: 28px;
-        align-items: center;
-        margin-bottom: 36px;
-      }
-      .hero-right {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-      @media (max-width: 920px) {
-        .hero {
-          grid-template-columns: 1fr;
-        }
-        .hero-right {
-          order: -1;
-        }
-      }
-
-      /* Card */
-      .card {
-        background: var(--card-bg);
-        border-radius: var(--radius);
-        padding: 20px;
-        border: 1px solid var(--card-border);
-        box-shadow: var(--shadow);
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
-        color: var(--muted-text);
-        margin-bottom: 20px;
-      }
-      .card--hero {
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.9),
-          rgba(255, 255, 255, 0.85)
-        );
-        color: var(--heading);
-      }
-      .card--clickable:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-        transition: all 0.3s ease;
-      }
-
-      /* Headline & Lead */
-      .headline {
-        font-size: 34px;
-        line-height: 1.05;
-        margin: 0 0 12px;
-        color: var(--heading);
-      }
-      .lead {
-        margin: 0 0 20px;
-        color: var(--muted-text);
-      }
-
-      /* Badges & Pills */
-      .badges {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 18px;
-      }
-      .badge,
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 10px;
-        border-radius: 999px;
-        background: var(--glass-weak);
-        color: var(--heading);
-        font-size: 13px;
-      }
-
-      /* Buttons */
-      .cta-row {
-        display: flex;
-        gap: 12px;
-        margin-top: 16px;
-      }
-      .btn {
-        padding: 12px 16px;
-        border-radius: 12px;
-        border: 0;
-        font-weight: 600;
-        cursor: pointer;
-      }
-      .btn.primary {
-        background: linear-gradient(90deg, #cdb9ff 0%, var(--accent) 100%);
-        color: white;
-        box-shadow: 0 6px 18px rgba(167, 139, 250, 0.14);
-      }
-      .btn.ghost {
-        background: transparent;
-        border: 1px solid rgba(63, 61, 86, 0.08);
-        color: var(--heading);
-      }
-
-      /* Stats */
-      .stats {
-        display: flex;
-        gap: 10px;
-        margin-top: 12px;
-      }
-      .stat {
-        flex: 1;
-        background: rgba(255, 255, 255, 0.85);
-        padding: 12px;
-        border-radius: 10px;
-        border: 1px solid rgba(159, 146, 201, 0.06);
-        text-align: center;
-        color: var(--heading);
-      }
-      .stat .n {
-        font-size: 18px;
-        font-weight: 700;
-      }
-      .stat .t {
-        font-size: 12px;
-        color: var(--muted-text);
-      }
-
-      /* Features */
-      .features {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
-        margin-bottom: 36px;
-      }
-      @media (max-width: 920px) {
-        .features {
-          grid-template-columns: 1fr;
-        }
-      }
-      .feature {
-        padding: 16px;
-        border-radius: 12px;
-        background: linear-gradient(
-          180deg,
-          rgba(255, 255, 255, 0.02),
-          rgba(255, 255, 255, 0.01)
-        );
-        min-height: 120px;
-        color: var(--heading);
-        margin-bottom: 20px;
-      }
-      .feature h3 {
-        margin: 0 0 8px;
-      }
-      .feature p {
-        margin: 0;
-        color: var(--muted-text);
-        font-size: 14px;
-      }
-
-      /* Token Section */
-      .token-section {
-        display: flex;
-        gap: 18px;
-        align-items: center;
-        margin-bottom: 36px;
-      }
-      @media (max-width: 920px) {
-        .token-section {
-          flex-direction: column;
-          align-items: stretch;
-        }
-      }
-      .token-chart {
-        flex: 1;
-        padding: 18px;
-        border-radius: 12px;
-      }
-      .token-actions {
-        width: 320px;
-      }
-
-      /* Events */
-      .events {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 36px;
-      }
-      .event {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-      }
-      .event .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--accent);
-      }
-
-      /* FAQ */
-      .faq {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-bottom: 36px;
-      }
-      @media (max-width: 920px) {
-        .faq {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* Footer */
-      footer {
-        margin-top: 28px;
-        color: var(--muted-text);
-        font-size: 13px;
-        text-align: center;
-      }
-
-      /* Form Inputs */
-      .form-row {
-        display: flex;
-        gap: 8px;
-      }
-      .input {
-        flex: 1;
-        padding: 10px;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.04);
-        background: transparent;
-        color: inherit;
-      }
-
-      /* Misc */
-      .ghost-link {
-        color: var(--accent);
-        text-decoration: none;
-        font-weight: 600;
-      }
-      .pulse {
-        animation: pulse 2.2s infinite;
-      }
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.03);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-
-      /* Team / Activity Cards */
-      .team-card,
-      .activity-card {
-        background: rgba(225, 210, 255, 0.12);
-        border-radius: 16px;
-        padding: 16px;
-        flex: 1 1 200px;
-        text-align: center;
-        backdrop-filter: blur(6px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        margin-bottom: 20px;
-      }
-      .team-card:hover,
-      .activity-card:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-        transition: 0.3s;
-      }
-      .team {
-        display: flex;
-        gap: 16px;
-        flex-wrap: wrap;
-        margin-top: 12px;
-      }
-
-      /* Responsive Small Screens */
-      @media (max-width: 600px) {
-        .card {
-          padding: 16px;
-        }
-        .headline {
-          font-size: 28px;
-        }
-        .team {
-          flex-direction: column;
-          gap: 12px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
@@ -474,7 +16,7 @@
         <div class="brand">
           <div class="logo">
             <img
-              src="./nest-icon.jpeg"
+              src="./images/nest-icon.jpeg"
               alt="Nest Logo"
               style="
                 width: 95%;
@@ -556,7 +98,7 @@
           </div>
           <div style="flex: 1 1 300px">
             <img
-              src="./nest-service.jpeg"
+              src="./images/nest-service.jpeg"
               alt="Nestサービスイメージ"
               style="width: 100%; border-radius: 24px; display: block"
             />
@@ -596,13 +138,12 @@
                 style="
                   width: 80px;
                   height: 80px;
-                  background: #333;
                   border-radius: 50%;
                   margin: 0 auto 8px;
                 "
               >
                 <img
-                  src="./x-icon-1.jpeg"
+                  src="./images/x-icon-1.jpeg"
                   alt="X Icon 1"
                   style="
                     width: 95%;
@@ -616,7 +157,7 @@
                 href="https://x.com/cat_man0311"
                 target="_blank"
                 style="color: var(--accent); text-decoration: none"
-                >ギリー/コミュニティNest founder
+                >ギリー
               </a>
               <p
                 style="
@@ -637,13 +178,12 @@
                 style="
                   width: 80px;
                   height: 80px;
-                  background: #333;
                   border-radius: 50%;
                   margin: 0 auto 8px;
                 "
               >
                 <img
-                  src="./x-icon-2.jpeg"
+                  src="./images/x-icon-2.jpeg"
                   alt="X Icon 2"
                   style="
                     width: 95%;
@@ -657,7 +197,7 @@
                 href="https://x.com/cotorisann"
                 target="_blank"
                 style="color: var(--accent); text-decoration: none"
-                >里紗-risa-🎹Inst piano artist
+                >里紗
               </a>
               <p
                 style="
@@ -710,7 +250,7 @@
                 参加者とのコミュニケーションもたくさん取りながらわちゃわちゃ楽しいスペースです。
               </p>
               <img
-                src="./x-space.jpeg"
+                src="./images/x-space.jpeg"
                 alt="スペース画像"
                 style="
                   width: 100%;
@@ -746,7 +286,7 @@
                 >2025年5月開催時の公式ページはこちら</a
               >
               <img
-                src="./fes.jpeg"
+                src="./images/fes.jpeg"
                 alt="イベント画像"
                 style="
                   width: 100%;
@@ -816,7 +356,7 @@
 
       // ハンバーガー押したら開閉
       toggle.addEventListener("click", (e) => {
-        e.stopPropagation(); // クリックを伝播させない
+        e.stopPropagation();
         overlay.classList.toggle("show");
       });
 
